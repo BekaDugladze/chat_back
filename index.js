@@ -81,7 +81,7 @@ app.get('/auth/google',
 
 app.get( '/auth/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: 'http://localhost:3000/chat',
+        successRedirect: 'https://chat-dl62.onrender.com/chat',
         failureRedirect: '/auth/google'
 }));
 
