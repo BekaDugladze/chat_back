@@ -42,7 +42,7 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: 'https://chat-dl62.onrender.com',
+        origin: 'https://chat-pied-sigma.vercel.app',
         methods: 'GET, POST, PUT, DELETE',
         credentials: true,
     })
