@@ -21,7 +21,7 @@ const app = express();
 passport.use(new GoogleStrategy({
     clientID:     '705267653150-4ss8ck9bgaqn0m8pkcun7m61al6ltr02.apps.googleusercontent.com',
     clientSecret: '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',
-    callbackURL: "http://localhost:1000/auth/google/callback",
+    callbackURL: "https://chat-back-qqgr.onrender.com/auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
