@@ -81,7 +81,7 @@ app.get('/auth/google',
 
 app.get( '/auth/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: 'https://chat-dl62.onrender.com/chat',
+        successRedirect: 'https://chat-pied-sigma.vercel.app/chat',
         failureRedirect: '/auth/google'
 }));
 
