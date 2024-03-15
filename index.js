@@ -114,7 +114,7 @@ app.get('/profile',  async (req, res) => {
             });
           } else {
             // If no user details are found, respond with an appropriate status and message
-            res.status(404).json({ error: 'User not found' });
+            res.status(401).json({ error: 'User not found' });
           }
         }
         else{
