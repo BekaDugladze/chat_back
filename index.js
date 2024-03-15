@@ -41,6 +41,14 @@ app.use(passport.session());
 app.use(express.json());
 
 
+app.use(
+    cors({
+        origin: ['https://chat-pied-sigma.vercel.app', 'http://localhost:3000']
+        methods: 'GET, POST, PUT, DELETE',
+        credentials: true,
+    })
+)
+
 app.get('/', (req, res, next) => {
     res.send('<a href="/auth/google">google</a>');
 })
