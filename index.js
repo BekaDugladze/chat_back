@@ -11,6 +11,8 @@ const register = require('./auth/register');
 const user = require('./user/user');
 const {handleChat, getMessage} = require('./user/chat');
 const latests = require('./user/latest');
+const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -23,23 +25,18 @@ const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require"
   })
 
-
-app.use(session({
-    secret: 'chatapp', 
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 3600 * 24 * 24 * 1,
-      sameSite: true,
-      secure: false,
-      httpOnly: true,
-    },
-  }));
+  app.use(cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2'],
+    maxAge: 3600 * 24 * 24 * 1, // 1 day
+    sameSite: 'lax',
+    secure: false, // Set it to true if you're using HTTPS
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-
+app.use(bodyParser.json());
 
 app.use(
     cors({
