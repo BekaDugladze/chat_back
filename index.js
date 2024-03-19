@@ -25,18 +25,24 @@ const pool = new Pool({
     connectionString: process.env.POSTGRES_URL + "?sslmode=require"
   })
 
-  app.use(cookieSession({
-    name: 'session',
-    keys: ['key1', 'key2'],
-    maxAge: 3600 * 24 * 24 * 1, // 1 day
-    sameSite: 'lax',
-    secure: false, // Set it to true if you're using HTTPS
-}));
+
+app.use(session({
+    secret: 'chatapp', 
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 3600 * 24 * 24 * 1,
+      sameSite: true,
+      secure: false,
+      httpOnly: true,
+    },
+    store: new pgSession({pool})
+  }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(bodyParser.json());
+
 
 app.use(
     cors({
